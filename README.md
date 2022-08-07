@@ -1,3 +1,16 @@
+# Game of life
+
+Based on [Conway's game of life](https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life)
+
+Making this for fun
+
+# App preview
+
+WIP on August 7th 2022:
+![img](20220807184512.png)
+
+# NextJ auto-generated docs:
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
