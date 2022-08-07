@@ -6,8 +6,8 @@ export const Grid = () => {
   const [positionY, setPositionY] = useState(0);
 
   useEffect(() => {
-    drawInitialBoard(1, 99);
-
+    // TODO: figure out min and max possible values for this board
+    drawInitialBoard(0, 500);
   }, []);
 
   const drawInitialBoard = (min, max) => {
@@ -23,9 +23,7 @@ export const Grid = () => {
 
   const cell = (
     <rect
-      // x="10"
       x={positionX}
-      // y="10"
       y={positionY}
       width="10"
       height="10"
@@ -36,7 +34,7 @@ export const Grid = () => {
   );
 
   let gridSVG = (
-    <svg width="500px" height="500px" xmlns="http://www.w3.org/2000/svg">
+    <svg width="510" height="510" xmlns="http://www.w3.org/2000/svg">
       <defs>
         <pattern
           id="smallGrid"
