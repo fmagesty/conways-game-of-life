@@ -1,0 +1,8 @@
+.mainContainer {
+  background-color: black;
+  color: whitesmoke;
+  height: 100vh;
+  width: 100vh;
+  display: block;
+  margin: auto;
+}
