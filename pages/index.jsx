@@ -1,17 +1,17 @@
 import React, { useState, useEffect } from "react";
 import styles from "../styles/Home.module.css";
 import { rulesText } from "../data/rulesText.module.js";
-import { Grid } from "../components/Grid";
+import { Board } from "../components/Board";
 
 export default function Home() {
   const [currentRound, setCurrentRound] = useState(0);
 
   useEffect(() => {
-    const interval = setInterval(() => {
+    const roundCountdown = setInterval(() => {
       setCurrentRound((currentRound) => currentRound + 1);
     }, 1000);
-    return () => clearInterval(interval);
-  }, [currentRound]);
+    return () => clearInterval(roundCountdown);
+  }, []);
 
   return (
     <>
@@ -20,7 +20,7 @@ export default function Home() {
         <span>v1</span>
         <div className={styles.rulesTextContainer}>{rulesText}</div>
         <p className={styles.currentRoundCounter}>Round: {currentRound}</p>
-        <Grid />
+        <Board />
       </div>
     </>
   );
