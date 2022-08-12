@@ -4,47 +4,59 @@ import styles from "../styles/Board.module.css";
 export const Board = () => {
   const [positionX, setPositionX] = useState(0);
   const [positionY, setPositionY] = useState(0);
-  const [cell, setCell] = useState(null);
-  const [cascadingTextData, setCascadingTextData] = useState()
-
+  const [displayedCells, setDisplayedCells] = useState(null);
+  // const [cascadingTextData, setCascadingTextData] = useState();
 
   useEffect(() => {
-    getInitialBoardPositions(0,500);
+    getInitialBoardPositions(0, 500);
+    generateCells();
     return () => {
-      getInitialBoardPositions(0,0)
-    }
-  });
+      getInitialBoardPositions(0, 0);
+    };
+  }, []);
 
-   // MOCK
-  const cascadingTextata = [
-    'string 1',
-    'string 2',
-    'string 3',
-  ]
+  // Mock - TODO: copy this to /utils/data
+  // const cascadingTextata = ["string 1", "string 2", "string 3"];
+
+
+
+  const generateCells = () => {
+    const cellGroup = [
+    { id: 0, xPosition: 55, yPosition: 10, color: "yellow" },
+    { id: 1, xPosition: 155, yPosition: 100, color: "white" },
+  ];
+    const populateCellGroup = cellGroup.map((item) => {
+      console.log(item);
+    });
+    return populateCellGroup;
+  };
+
+  // for (let i = 0; i < range; i++) {
+  //     console.log(i);
+  //   }
 
   const getInitialBoardPositions = (min, max) => {
     min = Math.ceil(min);
     max = Math.floor(max);
-    // get random X, Y positions
     let x = Math.floor(Math.random() * (max - min) + min);
     let y = Math.floor(Math.random() * (max - min) + min);
-    // round positin to 10
     setPositionX(`${Math.ceil((x * 10) / 10)}px`);
     setPositionY(`${Math.ceil((y * 10) / 10)}px`);
 
+    // MOVE THIS OUT - ITS GENERATING THE CELL SVG
     if (positionX && positionY) {
-      let cell = (
-      <rect
-        x={positionX}
-        y={positionY}
-        width="10"
-        height="10"
-        fillOpacity="1"
-        strokeDasharray="1"
-        fill="whitesmoke"
-      />
-    );
-    setCell(cell)
+      let cellSvg = (
+        <rect
+          x={positionX}
+          y={positionY}
+          width="10"
+          height="10"
+          fillOpacity="1"
+          strokeDasharray="1"
+          fill="whitesmoke"
+        />
+      );
+      setDisplayedCells(cellSvg);
     }
   };
 
@@ -64,7 +76,8 @@ export const Board = () => {
           />
         </pattern>
       </defs>
-      {cell}
+      {displayedCells}
+      {/* TODO ON THE FUTURE: MAKE THIS BLINK IN GREEN EVERY SECOND OR SO. IS POSSIBLE MAKE IT A SMOOTH ANIMATION AND NOT LIKE AN EPILEPSY-INDUCING THING IDK THE WORD */}
       <rect width="100%" height="100%" fill="url(#smallGrid)" />
     </svg>
   );
