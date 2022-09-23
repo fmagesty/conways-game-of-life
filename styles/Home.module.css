@@ -10,11 +10,6 @@
   font-size: 2rem;
 }
 
-.currentRoundCounter {
-  color: whitesmoke;
-  font-size: 2rem;
-}
-
 .rulesTextContainer {
-  color: green;
+  color: rgb(0, 200, 0);
 }

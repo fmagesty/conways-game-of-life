@@ -6,3 +6,8 @@
   display: block;
   margin: auto;
 }
+
+.currentRoundCounter {
+  color: whitesmoke;
+  font-size: 2rem;
+}
