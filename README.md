@@ -13,11 +13,19 @@ Making this for fun
 
 (WIP) August 12th 2022:
 
-## Only a single cell so far and it's going crazy inside a useEffect function that is making it re-render very fast. So visually it's like the cell is blinking on the board and teleporting everywhere. I have to find a way to record a gif for this later but at this point it's not a bug anymore, it's a featureTM
-
+Only a single cell so far and it's going crazy inside a useEffect function that is making it re-render very fast. So visually it's like the cell is blinking on the board and teleporting everywhere. I have to find a way to record a gif for this later but at this point it's not a bug anymore, it's a featureTM
 ![](V1.1.2.png)
+
 (WIP) August 7th 2022:
 ![img](20220807184512.png)
+
+(WIP) September 23rd 2022:
+
+Finally had some time to work on this app and want to finish it soon but let's see :laughing:
+
+Now generating the initial board with a fixed value for the initial cells displayed on the board. Next steps are to dinamically get this initial cell value dinamically through user input (might as well make it for the board size too, with some restrictions) and then finish the logic for the cells state of being alive/dead based on the game rules
+
+![img](20220923133517.png)
 
 # NextJ auto-generated docs:
 
