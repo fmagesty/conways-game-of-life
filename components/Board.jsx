@@ -1,73 +1,78 @@
-import React, { useState, useEffect } from "react"
-import styles from "../styles/Board.module.css"
+import React, { useState, useEffect } from "react";
+import styles from "../styles/Board.module.css";
 
 export const Board = () => {
-	const [currentRound, setCurrentRound] = useState(0)
-	let cellPosArr = []
-	const [initialCells, setInitialCells] = useState(null)
+	const [currentRound, setCurrentRound] = useState(0);
+	const [cells, setCells] = useState([]);
+
+	const calculateNextGeneration = () => {
+		const nextCells = cells.map((cell) => {
+			const { x, y, isAlive } = cell;
+			const neighbors = cells.filter(
+				(neighbor) =>
+					Math.abs(neighbor.x - x) <= 1 &&
+					Math.abs(neighbor.y - y) <= 1 &&
+					!(neighbor.x === x && neighbor.y === y)
+			);
+			const liveNeighbors = neighbors.filter((neighbor) => neighbor.isAlive).length;
+			if (isAlive && (liveNeighbors === 2 || liveNeighbors === 3)) {
+				return { x, y, isAlive: true };
+			} else if (!isAlive && liveNeighbors === 3) {
+				return { x, y, isAlive: true };
+			} else {
+				return { x, y, isAlive: false };
+			}
+		});
+		return nextCells;
+	};
 
 	useEffect(() => {
-		const roundCountdown = setInterval(() => {
-			setCurrentRound((currentRound) => currentRound + 1)
-		}, 1000)
-		getInitialBoardPositions(0, 500, 20)
-		displayInitialCells()
-		return () => clearInterval(roundCountdown)
-	}, [])
-
-	const getInitialBoardPositions = (min, max, initialCellsNum) => {
-		for (let i = 0; i < initialCellsNum; i++) {
-			min = Math.ceil(min)
-			max = Math.floor(max)
-			let x = `${Math.floor(Math.random() * (max - min) + min)}`
-			let y = `${Math.floor(Math.random() * (max - min) + min)}`
-			let cellPositions = { x: x, y: y }
-			cellPosArr.push(cellPositions)
+		// Set up the initial cells when the component mounts
+		const initialCells = [];
+		const boardSize = 50;
+		for (let x = 0; x < boardSize; x++) {
+			for (let y = 0; y < boardSize; y++) {
+				initialCells.push({ x, y, isAlive: false });
+			}
 		}
-	}
+		// Randomly assign some cells as alive
+		for (let i = 0; i < boardSize * boardSize * 0.5; i++) {
+			const randomIndex = Math.floor(Math.random() * initialCells.length);
+			initialCells[randomIndex].isAlive = true;
+		}
+		setCells(initialCells);
+		// Start the round countdown
+		const roundCountdown = setInterval(() => {
+			setCurrentRound((currentRound) => currentRound + 1);
+		}, 1000);
+		// Clean up the interval when the component unmounts
+		return () => clearInterval(roundCountdown);
+	}, []);
 
-	const displayInitialCells = () => {
-		setInitialCells(
-			cellPosArr &&
-				cellPosArr.map((item) => (
+	useEffect(() => {
+		if (cells.length > 0) {
+			// Calculate the next generation of cells
+			const nextCells = calculateNextGeneration();
+			// Update the cells state with the next generation
+			setCells(nextCells);
+		}
+	}, [currentRound, cells]);
+
+	return (
+		<div className={styles.mainContainer}>
+			<p className={styles.currentRoundCounter}>Round: {currentRound}</p>
+			<svg className={styles.boardSvg} width="500" height="500" xmlns="http://www.w3.org/2000/svg">
+				{cells.map((cell) => (
 					<rect
-						key={item.x + item.y}
-						x={Math.ceil(item.x / 10) * 10}
-						y={Math.ceil(item.y / 10) * 10}
+						key={`${cell.x},${cell.y}`}
+						x={cell.x * 10}
+						y={cell.y * 10}
 						width="10"
 						height="10"
-						fillOpacity="1"
-						strokeDasharray="1"
-						fill="rgb(0, 200, 0)"
+						fill={cell.isAlive ? "green" : "black"}
 					/>
-				))
-		)
-	}
-
-	let gridSVG = (
-		<svg width="500" height="500" xmlns="http://www.w3.org/2000/svg">
-			<defs>
-				<pattern
-					id="smallGrid"
-					width="10"
-					height="10"
-					patternUnits="userSpaceOnUse">
-					<path
-						d="M 10 0 L 0 0 0 10"
-						fill="none"
-						stroke="gray"
-						strokeWidth="0.5"
-					/>
-				</pattern>
-			</defs>
-			{initialCells}
-			<rect width="100%" height="100%" fill="url(#smallGrid)" />
-		</svg>
-	)
-	return (
-		<>
-			<p className={styles.currentRoundCounter}>Round: {currentRound}</p>
-			<div className={styles.mainContainer}>{gridSVG}</div>
-		</>
-	)
-}
+				))}
+			</svg>
+		</div>
+	);
+};

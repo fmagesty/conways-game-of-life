@@ -1,15 +1,15 @@
 .mainContainer {
-  background-color: black;
-  text-align: center;
-  padding-top: 1rem;
-  padding-bottom: 0.5rem;
+	background-color: black;
+	text-align: center;
+	padding-top: 1rem;
+	padding-bottom: 0.5rem;
 }
 
 .title {
-  color: whitesmoke;
-  font-size: 2rem;
+	color: whitesmoke;
+	font-size: 2rem;
 }
 
 .rulesTextContainer {
-  color: rgb(0, 200, 0);
+	color: rgb(0, 200, 0);
 }
