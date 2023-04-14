@@ -1,7 +1,7 @@
 ## TODO:
 
-- RECORD GIF FOR CURRENT VERSION - THE GAME IS RENDERING VERY FAST MAKING IT SEEM LIKE THE CELL IS TELEPORTING
-- TIDY UP DOCS FORMATATION - WROTE THIS IN A HURRY AND NOW ITS MESSY BUT READABLE
+-   RECORD GIF FOR CURRENT VERSION - THE GAME IS RENDERING VERY FAST MAKING IT SEEM LIKE THE CELL IS TELEPORTING
+-   TIDY UP DOCS FORMATATION - WROTE THIS IN A HURRY AND NOW ITS MESSY BUT READABLE
 
 # Game of life
 
@@ -26,6 +26,11 @@ Finally had some time to work on this app and want to finish it soon but let's s
 Now generating the initial board with a fixed value for the initial cells displayed on the board. Next steps are to dinamically get this initial cell value dinamically through user input (might as well make it for the board size too, with some restrictions) and then finish the logic for the cells state of being alive/dead based on the game rules
 
 ![img](20220923133517.png)
+
+April 14th 2023:
+
+The game is (finally) finished. I don't know if that can be said for anything and I could implement a lot more stuff on it but it's working 100% and will call it finished just for the sake of finishing a project ;P
+![img](20230414180126.png)
 
 # NextJ auto-generated docs:
 
@@ -53,8 +58,8 @@ The `pages/api` directory is mapped to `/api/*`. Files in this directory are tre
 
 To learn more about Next.js, take a look at the following resources:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+-   [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+-   [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
 You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
 
