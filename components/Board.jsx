@@ -5,10 +5,10 @@ export const Board = () => {
 	const [currentRound, setCurrentRound] = useState(0);
 	const [cells, setCells] = useState([]);
 
-	const calculateNextGeneration = () => {
-		const nextCells = cells.map((cell) => {
+	const calculateNextGeneration = (currentCells) => {
+		const nextCells = currentCells.map((cell) => {
 			const { x, y, isAlive } = cell;
-			const neighbors = cells.filter(
+			const neighbors = currentCells.filter(
 				(neighbor) =>
 					Math.abs(neighbor.x - x) <= 1 &&
 					Math.abs(neighbor.y - y) <= 1 &&
@@ -52,11 +52,9 @@ export const Board = () => {
 	useEffect(() => {
 		if (cells.length > 0) {
 			// Calculate the next generation of cells
-			const nextCells = calculateNextGeneration();
-			// Update the cells state with the next generation
-			setCells(nextCells);
+			setCells((currentCells) => calculateNextGeneration(currentCells));
 		}
-	}, [currentRound, cells]);
+	}, [currentRound]);
 
 	return (
 		<div className={styles.mainContainer}>
