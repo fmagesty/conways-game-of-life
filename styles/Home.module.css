@@ -4,6 +4,10 @@
 	padding-top: 1rem;
 	padding-bottom: 0.5rem;
 }
+.gameContainer {
+	display: flex;
+	gap: 20px;
+}
 
 .title {
 	color: whitesmoke;
