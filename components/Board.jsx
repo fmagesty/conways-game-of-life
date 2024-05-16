@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styles from "../styles/Board.module.css";
+import { ResetButton } from "../components/ResetButton";
 
 export const Board = () => {
 	const [currentRound, setCurrentRound] = useState(0);
@@ -57,7 +58,8 @@ export const Board = () => {
 	}, [currentRound]);
 
 	return (
-		<div className={styles.mainContainer}>
+		<div className={styles.boardContainer}>
+			<ResetButton setCurrentRound={setCurrentRound} />
 			<p className={styles.currentRoundCounter}>Round: {currentRound}</p>
 			<svg className={styles.boardSvg} width="500" height="500" xmlns="http://www.w3.org/2000/svg">
 				{cells.map((cell) => (
